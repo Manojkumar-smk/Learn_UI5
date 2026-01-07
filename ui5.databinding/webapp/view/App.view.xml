@@ -47,5 +47,58 @@
 				</l:VerticalLayout>
 			</l:HorizontalLayout>
 		</content>
+		</Panel>
+		<Panel headerText="{i18n>panel3HeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<List headerText="{i18n>productListTitle}" items="{products>/Products}">
+			<items>
+				<ObjectListItem title="{products>ProductName}"
+					press=".onItemSelected"
+					type="Active"
+					number="{
+						parts: [
+							{path: 'products>UnitPrice'},
+							{path: '/currencyCode'}
+						],
+						type: 'Currency',
+						formatOptions: { showMeasure: false }
+					}"
+					numberUnit="{/currencyCode}"
+					numberState="{= ${products>UnitPrice} > ${/priceThreshold} ? 'Error' : 'Success' }">
+					<attributes>
+						<ObjectAttribute text="{products>QuantityPerUnit}"/>
+						<ObjectAttribute title="{i18n>stockValue}"
+							text="{
+								parts: [
+									{path: 'products>UnitPrice'},
+									{path: 'products>UnitsInStock'},
+									{path: '/currencyCode'}
+								],
+								formatter: '.formatStockValue'
+							}"/>
+					</attributes>
+				</ObjectListItem>
+			</items>
+		</List>
+	</Panel>
+	<Panel id="productDetailsPanel" headerText="{i18n>panel4HeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<form:SimpleForm editable="true" layout="ColumnLayout">
+			<Label text="{i18n>ProductID}"/>
+			<Input value="{products>ProductID}"/>
+
+			<Label text="{i18n>ProductName}"/>
+			<Input value="{products>ProductName}"/>
+
+			<Label text="{i18n>QuantityPerUnit}"/>
+			<Input value="{products>QuantityPerUnit}"/>
+
+			<Label text="{i18n>UnitPrice}"/>
+			<Input value="{products>UnitPrice}"/>
+
+			<Label text="{i18n>UnitsInStock}"/>
+			<Input value="{products>UnitsInStock}"/>
+
+			<Label text="{i18n>Discontinued}"/>
+			<CheckBox selected="{products>Discontinued}"/>
+		</form:SimpleForm>
 	</Panel>
 </mvc:View>

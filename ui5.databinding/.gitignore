@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build and runtime folders
+dist/
+gen/
+*.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS and IDE specific
+.DS_Store
+.vscode/
+
+# Sensitive data
+.env
+default-env.json

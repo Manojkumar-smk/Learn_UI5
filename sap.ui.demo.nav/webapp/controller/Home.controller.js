@@ -1,10 +1,17 @@
 sap.ui.define([
-   "sap/ui/core/mvc/Controller"
-], function (Controller) {
-   "use strict";
+	"sap/ui/demo/nav/controller/BaseController"
+], function (BaseController) {
+	"use strict";
+	return BaseController.extend("sap.ui.demo.nav.controller.Home", {
+		onDisplayNotFound : function () {
+			// display the "notFound" target without changing the hash
+			this.getRouter().getTargets().display("notFound", {
+				fromTarget : "home"
+			});
+		},
+		onNavToEmployees : function (){
+			this.getRouter().navTo("employeeList");
+		}
 
-   return Controller.extend("sap.ui.demo.nav.controller.Home", {
-
-   });
-
+	});
 });
